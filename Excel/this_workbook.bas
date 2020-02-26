@@ -1,9 +1,10 @@
 Option Explicit
 
+' this_workbook.bas
 ' The contents of this file should be placed in the Workbook itself.
 
 ' in Immediate Window (View->Immediate Window or ctrl-g), type:
-' OldSchoolMenu()
+' call OldSchoolMenu()
 ' to start.
 
 
@@ -21,12 +22,12 @@ Private Sub Workbook_SheetSelectionChange(ByVal Sh As Object, ByVal Target As Ex
             ' if we are the in old school range
 
             Call PaintContent
-
+            
             ActiveCell.Interior.color = GetColors().activeCellBgColor
             ' ActiveCell.Font.color = GetColors.activeCellFgColor
-
+            
             Call PaintHeaders
-            Call FormatRange
+            ' Call FormatRange  'breaks ctrl-v, unacceptable
         End If
     End If
 End Sub

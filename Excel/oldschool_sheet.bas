@@ -1,9 +1,10 @@
 Option Explicit
 
+' oldschool_sheet.bas
 ' This code should be put in a module.
 
 ' in Immediate Window (View->Immediate Window or ctrl-g), type:
-' OldSchoolMenu()
+' call OldSchoolMenu()
 ' to start.
 
 Const FORMATTING_RANGE = True
@@ -109,7 +110,7 @@ Public Sub PaintHeaderColumn()
 
     range1 = "A1:" & address1
     ' Debug.Print "PaintHeaderColumn():range1:" & range1
-
+    
     Range(range1).Interior.color = GetColors.headerBgColor
     Range(range1).Font.color = GetColors.headerFgColor
 End Sub
@@ -183,7 +184,7 @@ Sub FormatRange()
     maxColNumber = DetectMaxColumns()
     targetRange = "A1:" & Cells(maxRowNumber, maxColNumber).Address
     ' Cells(r, c).Address
-
+    
     Range(targetRange).Font.Name = FORMATTING_RANGE_FONT_NAME
     Range(targetRange).Font.Size = FORMATTING_RANGE_FONT_SIZE
     Range(targetRange).WrapText = FORMATTING_RANGE_WRAP_TEXT
@@ -203,7 +204,7 @@ Sub FormatRange()
     '     .TintAndShade = 0
     '     .ThemeFont = xlThemeFontNone
     ' End With
-
+    
     ' With Selection
     '     .HorizontalAlignment = xlGeneral
     '     .VerticalAlignment = xlTop
@@ -226,7 +227,7 @@ Sub PaintInitially()
     Dim title As String
     Dim range1 As String
     Dim answer As String
-
+    
     Dim activeColors As ColorScheme
     activeColors = GetColors()
 
@@ -235,7 +236,7 @@ Sub PaintInitially()
     default = DEFAULT_RANGE
     answer = InputBox("From A1, paint the sheet until which cell?", title, default)
     range1 = "A1:" & answer
-
+        
     Range(range1).Interior.color = GetColors.contentBgColor
     Call PaintHeaders
     Call PaintContent
@@ -246,12 +247,13 @@ Sub OldSchoolMenu()
     ' Displays a simple Old School menu for easy usage
     Dim default As String
     Dim range1 As String
-
+    
     Dim title As String
     title = "Old School Menu"
-
+    
     Dim prompt As String
     prompt = prompt & "p - initial paint of the range" & vbCrLf
+    prompt = prompt & "f - format range" & vbCrLf
     prompt = prompt & "q - quit" & vbCrLf
 
     Dim answer As String
@@ -259,6 +261,8 @@ Sub OldSchoolMenu()
     answer = LCase(Trim(answer))
     If answer = "p" Then
         Call PaintInitially
+    ElseIf answer = "f" Then
+        Call FormatRange
     End If
 End Sub
 
