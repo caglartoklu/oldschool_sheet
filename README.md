@@ -89,7 +89,7 @@ to read more about Excel file extension.
 
 At the top of the module, the following options exist and they can be modified according to your needs:
 
-```
+```vb
 Const FORMATTING_RANGE_FONT_NAME = "Consolas"
 Const FORMATTING_RANGE_FONT_SIZE = 12
 Const FORMATTING_RANGE_WRAP_TEXT = False
